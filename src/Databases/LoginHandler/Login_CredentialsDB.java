@@ -8,7 +8,7 @@ public class Login_CredentialsDB implements IDatabaseConnection {
     @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/login_credits", "root", "24112021");
+                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
     }
 
     @Override
