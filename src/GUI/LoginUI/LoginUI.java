@@ -1,5 +1,6 @@
 package GUI.LoginUI;
 import Databases.DatabaseManager;
+import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
 import Databases.LoginHandler.Login_CredentialsDB;
 import GUI.GraphicalInterface;
@@ -7,6 +8,7 @@ import GUI.GraphicalInterface;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class LoginUI implements GraphicalInterface {
 
@@ -57,21 +59,29 @@ public class LoginUI implements GraphicalInterface {
             UserValidator userValidator = new UserValidator(Database);
             String user = usernameField.getText();
             String pass = userValidator.passwordBuilder(passwordField.getPassword());
-            if(userValidator.validateUser(user, pass)){
+            if(userValidator.isValidUser(user, pass) && userValidator.hasTheSameID(user, pass)){
                 JOptionPane.showMessageDialog(null, "Login successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(null, "Invalid User!", "Invalid", JOptionPane.ERROR_MESSAGE);
             }
         });
-//        Register.addActionListener(e -> {
-//
-//            String user = usernameField.getText();
-//
-//            StringBuilder pass = new StringBuilder(" ");
-//            for (char c: passwordField.getPassword()) {
-//                pass.append(c);
-//            }
-//                database.registerUser(user, pass.toString().trim());
-//        });
+
+        Register.addActionListener(e -> {
+            DatabaseManager Database = new DatabaseManager(new Login_CredentialsDB());
+            UserRegistration userRegistration = new UserRegistration(Database);
+            UserValidator userValidator = new UserValidator(Database);
+            String user = usernameField.getText();
+            String pass = userRegistration.passwordBuilder(passwordField.getPassword());
+            try{
+                userRegistration.RegisterUser(user, pass);
+                if(userValidator.isValidUser(user, pass) && userValidator.hasTheSameID(user, pass)){
+                    JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Credentials!", "Invalid", JOptionPane.ERROR_MESSAGE);
+                }
+            }catch (SQLException ex){
+                throw new RuntimeException(ex);
+            }
+        });
     }
 }

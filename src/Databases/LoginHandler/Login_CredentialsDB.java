@@ -14,9 +14,9 @@ public class Login_CredentialsDB implements IDatabaseConnection {
     @Override
     public String getValueFromDB(String Column, String Value){
         try {
-            PreparedStatement pt = getConnection().prepareStatement("select "+ Column +" from logins where "+Column+" = ?");
+            PreparedStatement pt = getConnection().prepareStatement(
+                    "select "+ Column +" from logins where "+Column+" = ?");
             pt.setString(1, Value);
-            pt.executeQuery();
             ResultSet rs = pt.executeQuery();
             if(rs.next()){
                 return rs.getString(1);

@@ -2,6 +2,9 @@ package Databases.LoginHandler;
 
 import Databases.DatabaseManager;
 import Databases.Interfaces.IDatabaseUserValidation;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserValidator implements IDatabaseUserValidation {
     DatabaseManager DatabaseManager;
@@ -9,11 +12,27 @@ public class UserValidator implements IDatabaseUserValidation {
         this.DatabaseManager = DatabaseManager;
     }
 
-    public boolean validateUser(String Username, String Password){
+    public boolean isValidUser(String Username, String Password){
         DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
-        return (db.getDatabase().getValueFromDB("user_name", Username)) != null &&
-                db.getDatabase().getValueFromDB("pass_word", Password) != null;
+        return (db.getDatabase().getValueFromDB("user_name", Username) != null &&
+                db.getDatabase().getValueFromDB("pass_word", Password) != null);
     } //TODO: Check for IDs for validation
+
+    public boolean hasTheSameID(String Username, String Password) {
+        DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
+        Username = db.getDatabase().getValueFromDB("user_name", Username);
+        Password = db.getDatabase().getValueFromDB("pass_word", Password);
+        try {
+            PreparedStatement pt = db.getDatabaseConnection().prepareStatement(
+                    "select ID from logins where user_name=? and pass_word=?");
+            pt.setString(1, Username);
+            pt.setString(2, Password);
+            ResultSet rs = pt.executeQuery();
+            return rs.next();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public String passwordBuilder(char[] pass){ //Retrieves char's from a JPasswordField
