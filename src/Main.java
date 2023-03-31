@@ -6,7 +6,7 @@ public class Main {
     //TODO: Write custom ID's that increment
 
     public static void main(String[] args) {
-        loginUI.Draw();
+        loginUI.init();
     }
 
 }

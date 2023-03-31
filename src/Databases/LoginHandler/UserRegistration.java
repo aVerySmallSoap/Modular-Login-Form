@@ -4,18 +4,19 @@ import Databases.DatabaseManager;
 import Databases.Interfaces.IDatabaseUserRegistration;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRegistration implements IDatabaseUserRegistration {
-    private static int ID_counter = 1;
     private DatabaseManager Database;
-
+    private int ID_counter = retrieveLatestIDNUM();
     public UserRegistration(DatabaseManager Database){
         this.Database = Database;
     }
 
     @Override
     public void RegisterUser(String Username, String Password) throws SQLException {
+        ++ID_counter;
         Database = new DatabaseManager(new Login_CredentialsDB());
         PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
                 "insert into logins (ID, user_name, pass_word) values (?,?,?)");
@@ -23,7 +24,22 @@ public class UserRegistration implements IDatabaseUserRegistration {
         pt.setString(2, Username);
         pt.setString(3, Password);
         pt.executeUpdate();
-        ++ID_counter;
+    }
+
+    private  int retrieveLatestIDNUM(){
+        try {
+            Database = new DatabaseManager(new Login_CredentialsDB());
+            PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
+                    "select count(distinct ID) from logins");
+            ResultSet rs = pt.executeQuery();
+            if (rs.next()){
+                return rs.getInt(1);
+            }else {
+                return 1;
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

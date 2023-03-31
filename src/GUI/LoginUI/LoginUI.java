@@ -11,22 +11,20 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class LoginUI implements GraphicalInterface {
+    final Dimension DIMENSIONS = new Dimension(500,500);
+    JFrame frame = new JFrame();
+    JPanel panel = new JPanel();
+    JPanel userPanel = new JPanel();
+    JPanel passPanel = new JPanel();
+    JLabel userLabel = new JLabel("Username: ");
+    JLabel passLabel = new JLabel("Password: ");
+    JTextField usernameField = new JTextField(20);
+    JPasswordField passwordField = new JPasswordField(20);
+    JButton Login = new JButton("Log-in");
+    JButton Register = new JButton("Register");
+    JPanel Buttons = new JPanel();
 
-    public void Draw(){
-        final Dimension DIMENSIONS = new Dimension(500,500);
-
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        JPanel userPanel = new JPanel();
-        JPanel passPanel = new JPanel();
-        JLabel userLabel = new JLabel("Username: ");
-        JLabel passLabel = new JLabel("Password: ");
-        JTextField usernameField = new JTextField(20);
-        JPasswordField passwordField = new JPasswordField(20);
-        JButton Login = new JButton("Log-in");
-        JButton Register = new JButton("Register");
-        JPanel Buttons = new JPanel();
-
+     public void Draw(){
         frame.setSize(DIMENSIONS);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -53,7 +51,9 @@ public class LoginUI implements GraphicalInterface {
         Buttons.add(Box.createHorizontalStrut(25));
         frame.add(Box.createVerticalStrut(200));
         Buttons.add(Register);
+    }
 
+    private void insertFunctions(){
         Login.addActionListener(e -> {
             DatabaseManager Database = new DatabaseManager(new Login_CredentialsDB());
             UserValidator userValidator = new UserValidator(Database);
@@ -83,5 +83,10 @@ public class LoginUI implements GraphicalInterface {
                 throw new RuntimeException(ex);
             }
         });
+    }
+
+    public void init(){
+        insertFunctions();
+        Draw();
     }
 }
