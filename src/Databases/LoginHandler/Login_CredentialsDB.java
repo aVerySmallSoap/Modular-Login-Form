@@ -12,6 +12,13 @@ public class Login_CredentialsDB implements IDatabaseConnection {
     }
 
     @Override
+    public boolean closeConnection() throws SQLException {
+        DriverManager.getConnection
+                ("jdbc:mysql://localhost:3306/login_credits", "root", "root").close();
+        return true;
+    }
+
+    @Override
     public String getValueFromDB(String Column, String Value){
         try {
             PreparedStatement pt = getConnection().prepareStatement(
@@ -27,4 +34,5 @@ public class Login_CredentialsDB implements IDatabaseConnection {
             throw new RuntimeException(e);
         }
     }
+
 }
