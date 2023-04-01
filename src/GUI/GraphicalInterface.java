@@ -1,5 +1,10 @@
 package GUI;
 
 public interface GraphicalInterface {
-    default void Draw(){}
+    void Draw();
+    void implementEvents();
+    default void init(){
+        Draw();
+        implementEvents();
+    }
 }

@@ -1,12 +1,12 @@
 import GUI.LoginUI.LoginUI;
+import GUI.WindowManager;
 
 public class Main {
-    static LoginUI loginUI = new LoginUI();
+    static WindowManager GUI = new WindowManager(new LoginUI());
     //TODO: finish the login page
-    //TODO: Write custom ID's that increment
 
     public static void main(String[] args) {
-        loginUI.init();
+        GUI.executeInterface();
     }
 
 }
