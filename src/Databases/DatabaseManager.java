@@ -1,6 +1,6 @@
 package Databases;
 
-import Databases.Interfaces.IDatabaseConnection;
+import Databases.LoginHandler.IDatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;

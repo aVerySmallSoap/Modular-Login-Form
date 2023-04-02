@@ -1,5 +1,4 @@
 package Databases.LoginHandler;
-import Databases.Interfaces.IDatabaseConnection;
 
 import java.sql.*;
 

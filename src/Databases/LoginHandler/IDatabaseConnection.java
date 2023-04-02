@@ -1,4 +1,4 @@
-package Databases.Interfaces;
+package Databases.LoginHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
