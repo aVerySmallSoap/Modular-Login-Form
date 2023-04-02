@@ -6,22 +6,26 @@ import java.sql.*;
 public class Login_CredentialsDB implements IDatabaseConnection {
 
     @Override
-    public Connection getConnection() throws SQLException {
+    public Connection getConnectionFrom(String Schema, String Username, String Password) throws SQLException {
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
+                "jdbc:mysql://localhost:3306/"+Schema, Username, Password);
+    }
+
+    @Override
+    public Connection getConnection() throws SQLException {
+        return getThisDatabase();
     }
 
     @Override
     public boolean closeConnection() throws SQLException {
-        DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/login_credits", "root", "root").close();
+        getThisDatabase().close();
         return true;
     }
 
     @Override
     public String getValueFromDB(String Column, String Value){
         try {
-            PreparedStatement pt = getConnection().prepareStatement(
+            PreparedStatement pt = getThisDatabase().prepareStatement(
                     "select "+ Column +" from logins where "+Column+" = ?"); //Unsafe statement
             pt.setString(1, Value);
             ResultSet rs = pt.executeQuery();
@@ -33,6 +37,11 @@ public class Login_CredentialsDB implements IDatabaseConnection {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    private Connection getThisDatabase() throws SQLException{
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
     }
 
 }

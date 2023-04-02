@@ -2,7 +2,6 @@ package Databases;
 
 import Databases.Interfaces.IDatabaseConnection;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -11,6 +10,10 @@ public class DatabaseManager {
 
     public DatabaseManager(IDatabaseConnection Database){
         this.Database = Database;
+    }
+
+    public Connection getDatabaseConnection(String Schema, String Username, String Password) throws SQLException{
+        return this.Database.getConnectionFrom(Schema, Username, Password);
     }
 
     public Connection getDatabaseConnection() throws SQLException{
