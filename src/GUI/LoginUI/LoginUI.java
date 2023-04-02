@@ -86,7 +86,7 @@ public class LoginUI implements GraphicalInterface {
     private void validateUser(String user, String pass){
         DatabaseManager Database = new DatabaseManager(new Login_CredentialsDB());
         UserValidator userValidator = new UserValidator(Database);
-        if(userValidator.isValidUser(user, pass) && userValidator.hasTheSameID(user, pass)){
+        if(userValidator.isValidUser(user, pass)){
             JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "Invalid!", "Invalid", JOptionPane.ERROR_MESSAGE);

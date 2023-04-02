@@ -14,9 +14,20 @@ public class UserValidator implements IDatabaseUserValidation {
 
     public boolean isValidUser(String Username, String Password){
         DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
-        return (db.getDatabase().getValueFromDB("user_name", Username) != null &&
-                db.getDatabase().getValueFromDB("pass_word", Password) != null);
-    } //TODO: Check for IDs for validation
+        return (
+                db.getDatabase().getValueFromDB("user_name", Username) != null &&
+                        db.getDatabase().getValueFromDB("pass_word", Password) != null) &&
+                hasTheSameID(Username, Password);
+    }
+
+    @Override
+    public String passwordBuilder(char[] pass){ //Retrieves char's from a JPasswordField
+        StringBuilder sb = new StringBuilder();
+        for (char c: pass) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
 
     public boolean hasTheSameID(String Username, String Password) {
         DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
@@ -32,14 +43,5 @@ public class UserValidator implements IDatabaseUserValidation {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public String passwordBuilder(char[] pass){ //Retrieves char's from a JPasswordField
-        StringBuilder sb = new StringBuilder();
-        for (char c: pass) {
-            sb.append(c);
-        }
-        return sb.toString();
     }
 }
