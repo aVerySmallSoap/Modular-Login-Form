@@ -1,6 +1,6 @@
 package Databases.LoginHandler;
 
-import Databases.DatabaseManager;
+import DatabaseManager.DatabaseManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package Databases;
+package DatabaseManager;
 
 import Databases.LoginHandler.IDatabaseConnection;
 
