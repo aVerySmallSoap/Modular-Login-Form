@@ -27,6 +27,7 @@ class Login_CredentialsDBTest {
     }
 
     @Test
-    void getValueFromDB() {
+    void getValueFromDB(){
+        assertEquals(db.getDatabase().getValueFromDB("user_name", "Lirys"), "Lirys");
     }
 }

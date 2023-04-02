@@ -22,26 +22,26 @@ public class Login_CredentialsDB implements IDatabaseConnection {
         return true;
     }
 
+    private Connection getThisDatabase() throws SQLException{
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
+    }
+
     @Override
     public String getValueFromDB(String Column, String Value){
         try {
             PreparedStatement pt = getThisDatabase().prepareStatement(
-                    "select "+ Column +" from logins where "+Column+" = ?"); //Unsafe statement
+                    "select " + Column + " from logins where " + Column + " = ?"); //Unsafe statement
             pt.setString(1, Value);
             ResultSet rs = pt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return rs.getString(1);
-            }else{
+            } else {
                 return null;
             }
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-    }
-
-    private Connection getThisDatabase() throws SQLException{
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
     }
 
 }

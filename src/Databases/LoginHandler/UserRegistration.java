@@ -15,6 +15,15 @@ public class UserRegistration implements IDatabaseUserRegistration {
     }
 
     @Override
+    public String passwordBuilder(char[] pass){
+        StringBuilder sb = new StringBuilder();
+        for (char c: pass) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    @Override
     public void RegisterUser(String Username, String Password) throws SQLException {
         ++ID_counter;
         Database = new DatabaseManager(new Login_CredentialsDB());
@@ -40,14 +49,5 @@ public class UserRegistration implements IDatabaseUserRegistration {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public String passwordBuilder(char[] pass){
-        StringBuilder sb = new StringBuilder();
-        for (char c: pass) {
-            sb.append(c);
-        }
-        return sb.toString();
     }
 }
