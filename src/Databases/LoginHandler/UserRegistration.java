@@ -26,7 +26,7 @@ public class UserRegistration implements IDatabaseUserRegistration {
     @Override
     public void RegisterUser(String Username, String Password) throws SQLException {
         ++ID_counter;
-        Database = new DatabaseManager(new Login_CredentialsDB());
+        Database = new DatabaseManager(new LoginCredentialsDB());
         PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
                 "insert into logins (ID, user_name, pass_word) values (?,?,?)");
         pt.setInt(1, ID_counter);
@@ -37,7 +37,7 @@ public class UserRegistration implements IDatabaseUserRegistration {
 
     private  int retrieveLatestIDNUM(){
         try {
-            Database = new DatabaseManager(new Login_CredentialsDB());
+            Database = new DatabaseManager(new LoginCredentialsDB());
             PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
                     "select count(distinct ID) from logins");
             ResultSet rs = pt.executeQuery();

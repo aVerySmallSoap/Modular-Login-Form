@@ -1,15 +1,15 @@
 package Databases.Test;
 
 import Databases.DatabaseManager;
-import Databases.LoginHandler.Login_CredentialsDB;
+import Databases.LoginHandler.LoginCredentialsDB;
 import org.junit.jupiter.api.Test;
 
 
 import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
-class Login_CredentialsDBTest {
-    DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
+class LoginCredentialsDBTest {
+    DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
 
     @Test
     void getDatabaseConnection() throws SQLException {

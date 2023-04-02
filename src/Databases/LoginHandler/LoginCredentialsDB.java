@@ -3,7 +3,7 @@ import Databases.Interfaces.IDatabaseConnection;
 
 import java.sql.*;
 
-public class Login_CredentialsDB implements IDatabaseConnection {
+public class LoginCredentialsDB implements IDatabaseConnection {
 
     @Override
     public Connection getConnectionFrom(String Schema, String Username, String Password) throws SQLException {

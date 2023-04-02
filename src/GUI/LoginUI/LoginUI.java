@@ -2,7 +2,7 @@ package GUI.LoginUI;
 import Databases.DatabaseManager;
 import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
-import Databases.LoginHandler.Login_CredentialsDB;
+import Databases.LoginHandler.LoginCredentialsDB;
 import GUI.GraphicalInterface;
 
 import javax.swing.*;
@@ -62,7 +62,7 @@ public class LoginUI implements GraphicalInterface {
 
     public void implementEvents(){
         Login.addActionListener(e -> {
-            DatabaseManager Database = new DatabaseManager(new Login_CredentialsDB());
+            DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
             UserValidator userValidator = new UserValidator(Database);
             String user = usernameField.getText();
             String pass = userValidator.passwordBuilder(passwordField.getPassword());
@@ -70,7 +70,7 @@ public class LoginUI implements GraphicalInterface {
         });
 
         Register.addActionListener(e -> {
-            DatabaseManager Database = new DatabaseManager(new Login_CredentialsDB());
+            DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
             UserRegistration userRegistration = new UserRegistration(Database);
             String user = usernameField.getText();
             String pass = userRegistration.passwordBuilder(passwordField.getPassword());
@@ -84,7 +84,7 @@ public class LoginUI implements GraphicalInterface {
     }
 
     private void validateUser(String user, String pass){
-        DatabaseManager Database = new DatabaseManager(new Login_CredentialsDB());
+        DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
         UserValidator userValidator = new UserValidator(Database);
         if(userValidator.isValidUser(user, pass)){
             JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);

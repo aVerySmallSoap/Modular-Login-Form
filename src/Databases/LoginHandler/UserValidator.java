@@ -13,7 +13,7 @@ public class UserValidator implements IDatabaseUserValidation {
     }
 
     public boolean isValidUser(String Username, String Password){
-        DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
+        DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
         return (
                 db.getDatabase().getValueFromDB("user_name", Username) != null &&
                         db.getDatabase().getValueFromDB("pass_word", Password) != null) &&
@@ -30,7 +30,7 @@ public class UserValidator implements IDatabaseUserValidation {
     }
 
     public boolean hasTheSameID(String Username, String Password) {
-        DatabaseManager db = new DatabaseManager(new Login_CredentialsDB());
+        DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
         Username = db.getDatabase().getValueFromDB("user_name", Username);
         Password = db.getDatabase().getValueFromDB("pass_word", Password);
         try {
