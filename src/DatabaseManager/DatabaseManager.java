@@ -21,5 +21,4 @@ public class DatabaseManager {
     public IDatabaseConnection getDatabase(){
         return this.Database;
     }
-
 }

@@ -15,11 +15,7 @@ public class UserValidator implements IDatabaseUserValidation {
 
     @Override
     public boolean isValidUser(String Username, String Password){
-        DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
-        return (
-                db.getDatabase().getValueFromDB("user_name", Username) != null &&
-                        db.getDatabase().getValueFromDB("pass_word", Password) != null) &&
-                hasTheSameID(Username, Password);
+        return hasTheSameID(Username, Password);
     }
 
     @Override
@@ -32,15 +28,24 @@ public class UserValidator implements IDatabaseUserValidation {
     }
 
     private boolean hasTheSameID(String Username, String Password) {
-        DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
-        Username = db.getDatabase().getValueFromDB("user_name", Username);
-        Password = db.getDatabase().getValueFromDB("pass_word", Password);
         try {
-            PreparedStatement pt = db.getDatabaseConnection().prepareStatement(
+            PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
                     "select ID from logins where user_name=? and pass_word=?");
             pt.setString(1, Username);
             pt.setString(2, Password);
             ResultSet rs = pt.executeQuery();
+            return rs.next();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean userExist(String Username){
+        try{
+            PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
+                    "select * from logins where user_name=?");
+            pt.setString(1, Username);
+           ResultSet rs = pt.executeQuery();
             return rs.next();
         }catch (SQLException e){
             throw new RuntimeException(e);
