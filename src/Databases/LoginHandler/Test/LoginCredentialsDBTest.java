@@ -30,6 +30,4 @@ class LoginCredentialsDBTest {
     void getValueFromDB(){
         assertEquals(db.getDatabase().getValueFromDB("user_name", "Lirys"), "Lirys");
     }
-
-
 }
