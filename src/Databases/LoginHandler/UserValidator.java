@@ -5,6 +5,7 @@ import DatabaseManager.DatabaseManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import DatabaseManager.IDatabaseUserValidation;
 
 public class UserValidator implements IDatabaseUserValidation {
     DatabaseManager DatabaseManager;

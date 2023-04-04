@@ -1,5 +1,7 @@
 package Databases.LoginHandler;
 
+import DatabaseManager.IDatabaseConnection;
+
 import java.sql.*;
 
 public class LoginCredentialsDB implements IDatabaseConnection {
