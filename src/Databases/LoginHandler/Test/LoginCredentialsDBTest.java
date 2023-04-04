@@ -2,14 +2,19 @@ package Databases.LoginHandler.Test;
 
 import DatabaseManager.DatabaseManager;
 import Databases.LoginHandler.LoginCredentialsDB;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoginCredentialsDBTest {
-    DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
+    DatabaseManager db;
+
+    @BeforeEach
+    void setUp() {
+        db = new DatabaseManager(new LoginCredentialsDB());
+    }
 
     @Test
     void getDatabaseConnection() throws SQLException {
@@ -30,4 +35,6 @@ class LoginCredentialsDBTest {
     void getValueFromDB(){
         assertEquals(db.getDatabase().getValueFromDB("user_name", "Lirys"), "Lirys");
     }
+
+
 }

@@ -60,6 +60,7 @@ public class LoginUI implements GraphicalInterface {
         Buttons.add(Register);
     }
 
+    //TODO: Do not tie functionality with the UI
     public void implementEvents(){
         Login.addActionListener(e -> {
             DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
@@ -74,12 +75,8 @@ public class LoginUI implements GraphicalInterface {
             UserRegistration userRegistration = new UserRegistration(Database);
             String user = usernameField.getText();
             String pass = userRegistration.passwordBuilder(passwordField.getPassword());
-            try{
-                userRegistration.RegisterUser(user, pass);
-                validateUser(user,pass);
-            }catch (SQLException ex){
-                throw new RuntimeException(ex);
-            }
+            userRegistration.RegisterUser(user, pass);
+            validateUser(user,pass);
         });
     }
 

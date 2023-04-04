@@ -16,8 +16,12 @@ public class DatabaseManager {
         return this.Database.getConnectionFrom(Schema, Username, Password);
     }
 
-    public Connection getDatabaseConnection() throws SQLException{
-        return this.Database.getConnection();
+    public Connection getDatabaseConnection(){
+        try{
+            return this.Database.getConnection();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public IDatabaseConnection getDatabase(){

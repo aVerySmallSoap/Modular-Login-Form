@@ -23,15 +23,21 @@ public class UserRegistration implements IDatabaseUserRegistration {
     }
 
     @Override
-    public void RegisterUser(String Username, String Password) throws SQLException {
-        ++ID_counter;
-        Database = new DatabaseManager(new LoginCredentialsDB());
-        PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
-                "insert into logins (ID, user_name, pass_word) values (?,?,?)");
-        pt.setInt(1, ID_counter);
-        pt.setString(2, Username);
-        pt.setString(3, Password);
-        pt.executeUpdate();
+    public boolean RegisterUser(String Username, String Password) {
+        try {
+            ++ID_counter;
+            Database = new DatabaseManager(new LoginCredentialsDB());
+            PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
+                    "insert into logins (ID, user_name, pass_word) values (?,?,?)");
+            pt.setInt(1, ID_counter);
+            pt.setString(2, Username);
+            pt.setString(3, Password);
+            pt.executeUpdate();
+            return true;
+        }catch (SQLException e){
+            //User already exists
+            return false;
+        }
     }
 
     private  int retrieveLatestIDNUM(){
