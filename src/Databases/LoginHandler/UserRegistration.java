@@ -1,6 +1,7 @@
 package Databases.LoginHandler;
 
 import DatabaseManager.DatabaseManager;
+import DatabaseManager.IDatabaseUserRegistration;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,7 +41,7 @@ public class UserRegistration implements IDatabaseUserRegistration {
         }
     }
 
-    private  int retrieveLatestIDNUM(){
+    private int retrieveLatestIDNUM(){
         try {
             Database = new DatabaseManager(new LoginCredentialsDB());
             PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(

@@ -7,12 +7,6 @@ import java.sql.*;
 public class LoginCredentialsDB implements IDatabaseConnection {
 
     @Override
-    public Connection getConnectionFrom(String Schema, String Username, String Password) throws SQLException {
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/"+Schema, Username, Password);
-    }
-
-    @Override
     public Connection getConnection() throws SQLException {
         return getThisDatabase();
     }
@@ -21,11 +15,6 @@ public class LoginCredentialsDB implements IDatabaseConnection {
     public boolean closeConnection() throws SQLException {
         getThisDatabase().close();
         return true;
-    }
-
-    private Connection getThisDatabase() throws SQLException{
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
     }
 
     @Override
@@ -43,6 +32,11 @@ public class LoginCredentialsDB implements IDatabaseConnection {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    private Connection getThisDatabase() throws SQLException{
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
     }
 
 }

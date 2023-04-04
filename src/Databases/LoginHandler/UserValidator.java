@@ -13,6 +13,7 @@ public class UserValidator implements IDatabaseUserValidation {
         this.DatabaseManager = DatabaseManager;
     }
 
+    @Override
     public boolean isValidUser(String Username, String Password){
         DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
         return (
@@ -30,7 +31,7 @@ public class UserValidator implements IDatabaseUserValidation {
         return sb.toString();
     }
 
-    public boolean hasTheSameID(String Username, String Password) {
+    private boolean hasTheSameID(String Username, String Password) {
         DatabaseManager db = new DatabaseManager(new LoginCredentialsDB());
         Username = db.getDatabase().getValueFromDB("user_name", Username);
         Password = db.getDatabase().getValueFromDB("pass_word", Password);
