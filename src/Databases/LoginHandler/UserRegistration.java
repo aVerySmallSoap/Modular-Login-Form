@@ -2,25 +2,17 @@ package Databases.LoginHandler;
 
 import DatabaseManager.DatabaseManager;
 import DatabaseManager.IDatabaseUserRegistration;
+import DatabaseManager.IPasswordBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserRegistration implements IDatabaseUserRegistration {
+public class UserRegistration implements IDatabaseUserRegistration, IPasswordBuilder {
     private DatabaseManager Database;
     private int ID_counter = retrieveLatestIDNUM();
     public UserRegistration(DatabaseManager Database){
         this.Database = Database;
-    }
-
-    @Override
-    public String passwordBuilder(char[] pass){
-        StringBuilder sb = new StringBuilder();
-        for (char c: pass) {
-            sb.append(c);
-        }
-        return sb.toString();
     }
 
     @Override

@@ -10,6 +10,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class LoginUI implements GraphicalInterface {
+
+    DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
+    UserValidator userValidator = new UserValidator(Database);
+    UserRegistration userRegistration = new UserRegistration(Database);
+
     final Dimension DIMENSIONS = new Dimension(500,500);
     JFrame frame = new JFrame();
     JPanel fieldsPanel = new JPanel();
@@ -61,11 +66,8 @@ public class LoginUI implements GraphicalInterface {
 
     //TODO: Do not tie functionality with the UI
     public void implementEvents(){
-        DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
-        UserValidator userValidator = new UserValidator(Database);
-        UserRegistration userRegistration = new UserRegistration(Database);
         String user = usernameField.getText();
-        String pass = userValidator.passwordBuilder(passwordField.getPassword());
+        String pass = userValidator.append(passwordField.getPassword());
 
         Login.addActionListener(e -> validateUser(user,pass));
 
@@ -76,8 +78,6 @@ public class LoginUI implements GraphicalInterface {
     }
 
     private void validateUser(String user, String pass){
-        DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
-        UserValidator userValidator = new UserValidator(Database);
         if(userValidator.userExist(user) && userValidator.isValidUser(user, pass)){
             JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{

@@ -1,13 +1,14 @@
 package Databases.LoginHandler;
 
 import DatabaseManager.DatabaseManager;
+import DatabaseManager.IPasswordBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import DatabaseManager.IDatabaseUserValidation;
 
-public class UserValidator implements IDatabaseUserValidation {
+public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder {
     DatabaseManager DatabaseManager;
     public UserValidator(DatabaseManager DatabaseManager){
         this.DatabaseManager = DatabaseManager;
@@ -16,15 +17,6 @@ public class UserValidator implements IDatabaseUserValidation {
     @Override
     public boolean isValidUser(String Username, String Password){
         return hasTheSameID(Username, Password);
-    }
-
-    @Override
-    public String passwordBuilder(char[] pass){ //Retrieves char's from a JPasswordField
-        StringBuilder sb = new StringBuilder();
-        for (char c: pass) {
-            sb.append(c);
-        }
-        return sb.toString();
     }
 
     private boolean hasTheSameID(String Username, String Password) {
