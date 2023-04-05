@@ -6,6 +6,8 @@ import DatabaseManager.IPasswordBuilder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
+
 import DatabaseManager.IDatabaseUserValidation;
 
 public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder {
@@ -33,13 +35,14 @@ public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder 
         }
     }
 
-    public boolean userNotExisting(String Username){
+    public boolean userExists(String Username){
+        if(Username.equals("")) return true;
         try{
             PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
                     "select * from logins where user_name=?");
             pt.setString(1, Username);
            ResultSet rs = pt.executeQuery();
-            return !rs.next();
+            return rs.next();
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

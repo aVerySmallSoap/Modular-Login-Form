@@ -22,11 +22,7 @@ class UserValidatorTest {
     }
 
     @Test
-    void passwordBuilder() {
-    }
-
-    @Test
     void userExist() {
-        assertTrue(validator.userNotExisting("Test"));
+        assertFalse(validator.userExists(""));
     }
 }

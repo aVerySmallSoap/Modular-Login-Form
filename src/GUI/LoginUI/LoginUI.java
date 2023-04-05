@@ -66,20 +66,24 @@ public class LoginUI implements GraphicalInterface {
 
     //TODO: Do not tie functionality with the UI
     public void implementEvents(){
-        String user = usernameField.getText();
-        String pass = userValidator.append(passwordField.getPassword());
-
-        Login.addActionListener(e -> validateUser(user,pass));
-
-        Register.addActionListener(e -> validateUserForRegistry(user, pass));
+        Login.addActionListener(e -> {
+            String user = usernameField.getText();
+            String pass = userValidator.append(passwordField.getPassword());
+            validateUser(user,pass);
+        });
+        Register.addActionListener(e -> {
+            String user = usernameField.getText();
+            String pass = userValidator.append(passwordField.getPassword());
+            validateUserForRegistry(user, pass);
+        });
     }
 
     private void validateUserForRegistry(String user, String pass){
-        if(!userValidator.userNotExisting(user)){
+        if(userValidator.userExists(user)){
+            JOptionPane.showMessageDialog(null, "User already exists!", "Invalid", JOptionPane.ERROR_MESSAGE);
+        }else{
             userRegistration.RegisterUser(user, pass);
             JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid!", "Invalid", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -87,7 +91,7 @@ public class LoginUI implements GraphicalInterface {
         if(userValidator.isValidUser(user, pass)){
             JOptionPane.showMessageDialog(null, "Log-in Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            JOptionPane.showMessageDialog(null, "Invalid!", "Invalid", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "User does not exist!", "Invalid", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
