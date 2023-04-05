@@ -23,7 +23,7 @@ class UserRegistrationTest {
     @Test
     void passwordBuilder() {
         char[] c = {'c','h','a','r'};
-        assertEquals(registration.passwordBuilder(c), "char");
+        assertEquals(registration.append(c), "char");
     }
 
     @Test

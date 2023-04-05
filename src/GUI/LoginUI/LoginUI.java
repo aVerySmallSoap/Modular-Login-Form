@@ -71,15 +71,21 @@ public class LoginUI implements GraphicalInterface {
 
         Login.addActionListener(e -> validateUser(user,pass));
 
-        Register.addActionListener(e -> {
-            validateUser(user, pass);
+        Register.addActionListener(e -> validateUserForRegistry(user, pass));
+    }
+
+    private void validateUserForRegistry(String user, String pass){
+        if(!userValidator.userNotExisting(user)){
             userRegistration.RegisterUser(user, pass);
-        });
+            JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Invalid!", "Invalid", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void validateUser(String user, String pass){
-        if(userValidator.userExist(user) && userValidator.isValidUser(user, pass)){
-            JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+        if(userValidator.isValidUser(user, pass)){
+            JOptionPane.showMessageDialog(null, "Log-in Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "Invalid!", "Invalid", JOptionPane.ERROR_MESSAGE);
         }

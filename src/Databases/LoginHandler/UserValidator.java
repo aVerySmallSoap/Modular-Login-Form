@@ -20,6 +20,7 @@ public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder 
     }
 
     private boolean hasTheSameID(String Username, String Password) {
+        if(Username.equals("") && Password.equals("")) return false;
         try {
             PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
                     "select ID from logins where user_name=? and pass_word=?");
@@ -32,13 +33,13 @@ public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder 
         }
     }
 
-    public boolean userExist(String Username){
+    public boolean userNotExisting(String Username){
         try{
             PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
                     "select * from logins where user_name=?");
             pt.setString(1, Username);
            ResultSet rs = pt.executeQuery();
-            return rs.next();
+            return !rs.next();
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

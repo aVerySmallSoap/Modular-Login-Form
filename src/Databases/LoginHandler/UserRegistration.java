@@ -17,6 +17,7 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
 
     @Override
     public boolean RegisterUser(String Username, String Password) {
+        if(Username.equals("") && Password.equals("")) return false;
         try {
             ++ID_counter;
             Database = new DatabaseManager(new LoginCredentialsDB());

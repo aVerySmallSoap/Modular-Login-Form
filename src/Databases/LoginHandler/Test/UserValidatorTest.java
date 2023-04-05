@@ -27,6 +27,6 @@ class UserValidatorTest {
 
     @Test
     void userExist() {
-        assertFalse(validator.userExist("Test"));
+        assertTrue(validator.userNotExisting("Test"));
     }
 }
