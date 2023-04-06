@@ -3,6 +3,7 @@ package Databases.LoginHandler.Test;
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.UserRegistration;
 import Managers.DatabaseManager;
+import Managers.QueryManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,8 @@ class UserRegistrationTest {
 
     @BeforeEach
     void setUp(){
-        registration = new UserRegistration(new DatabaseManager(new LoginCredentialsDB()));
+        DatabaseManager databaseManager = new DatabaseManager(new LoginCredentialsDB());
+        registration = new UserRegistration(new QueryManager(databaseManager, new LoginCredentialsDB()));
     }
 
     @Test

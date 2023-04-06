@@ -17,7 +17,7 @@ public class LoginCredentialsDB implements IDatabaseConnection, IDBQueries {
         getThisDatabase().close();
         return true;
     }
-
+    //TODO: SEPARATE THIS METHOD AS IT IS NOT RESPONSIBLE FOR QUERIES
     @Override
     public String getQuery(String Column, String Value){
         try {

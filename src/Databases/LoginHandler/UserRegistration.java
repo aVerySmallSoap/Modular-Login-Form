@@ -13,16 +13,17 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
     private DatabaseManager Database;
     private QueryManager queryManager;
     private int ID_counter = retrieveLatestIDNUM();
-    public UserRegistration(DatabaseManager Database){
-        this.Database = Database;
+    public UserRegistration(QueryManager Query){
+        this.queryManager = Query;
     }
 
     @Override
     public boolean RegisterUser(String Username, String Password) {
-        if(Username.equals("") && Password.equals("")) return false;
+        if(Username.equals("") || Password.equals(""))
+            return false;
         try {
             ++ID_counter;
-            queryManager= new QueryManager(Database, new LoginCredentialsDB());
+            queryManager = new QueryManager(Database, new LoginCredentialsDB()); //blank
             PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
                     "insert into logins (ID, user_name, pass_word) values (?,?,?)");
             pt.setInt(1, ID_counter);
@@ -31,7 +32,6 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
             pt.executeUpdate();
             return true;
         }catch (SQLException e){
-            //User already exists
             return false;
         }
     }

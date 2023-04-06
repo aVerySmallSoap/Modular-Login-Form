@@ -5,6 +5,7 @@ import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
 import GUI.GraphicalInterface;
 import Managers.DatabaseManager;
+import Managers.QueryManager;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,7 +15,7 @@ public class LoginUI implements GraphicalInterface {
 
     DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
     UserValidator userValidator = new UserValidator(Database);
-    UserRegistration userRegistration = new UserRegistration(Database);
+    UserRegistration userRegistration = new UserRegistration(new QueryManager(Database, new LoginCredentialsDB()));
 
     final Dimension DIMENSIONS = new Dimension(500,500);
     JFrame frame = new JFrame();
