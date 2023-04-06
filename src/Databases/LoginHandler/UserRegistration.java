@@ -1,8 +1,8 @@
 package Databases.LoginHandler;
 
-import DatabaseManager.DatabaseManager;
-import DatabaseManager.IDatabaseUserRegistration;
-import DatabaseManager.IPasswordBuilder;
+import Managers.DatabaseManager;
+import Managers.Interfaces.IDatabaseUserRegistration;
+import Managers.Interfaces.IPasswordBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

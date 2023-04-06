@@ -1,5 +1,5 @@
 package GUI.LoginUI;
-import DatabaseManager.DatabaseManager;
+import Managers.DatabaseManager;
 import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
 import Databases.LoginHandler.LoginCredentialsDB;

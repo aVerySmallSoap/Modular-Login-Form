@@ -1,4 +1,6 @@
-package DatabaseManager;
+package Managers;
+
+import Managers.Interfaces.IDBQueries;
 
 public class QueryManager extends DatabaseManager{
     IDBQueries Module;

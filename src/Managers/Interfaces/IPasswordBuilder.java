@@ -1,4 +1,4 @@
-package DatabaseManager;
+package Managers.Interfaces;
 
 public interface IPasswordBuilder {
     default String append(char[] password){

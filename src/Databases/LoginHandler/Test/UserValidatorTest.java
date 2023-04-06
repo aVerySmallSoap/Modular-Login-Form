@@ -1,6 +1,6 @@
 package Databases.LoginHandler.Test;
 
-import DatabaseManager.DatabaseManager;
+import Managers.DatabaseManager;
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.UserValidator;
 import org.junit.jupiter.api.BeforeEach;

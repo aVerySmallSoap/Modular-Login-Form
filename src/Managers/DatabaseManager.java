@@ -1,4 +1,6 @@
-package DatabaseManager;
+package Managers;
+
+import Managers.Interfaces.IDatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;

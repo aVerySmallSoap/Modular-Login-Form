@@ -1,7 +1,7 @@
 package Databases.LoginHandler;
 
-import DatabaseManager.IDBQueries;
-import DatabaseManager.IDatabaseConnection;
+import Managers.Interfaces.IDBQueries;
+import Managers.Interfaces.IDatabaseConnection;
 
 import java.sql.*;
 
