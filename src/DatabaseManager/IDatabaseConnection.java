@@ -9,6 +9,4 @@ public interface IDatabaseConnection {
 
     boolean closeConnection() throws SQLException;
 
-    String getValueFromDB(String Column, String Value);
-
 }

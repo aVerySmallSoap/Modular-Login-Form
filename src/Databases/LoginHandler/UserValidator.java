@@ -6,8 +6,6 @@ import DatabaseManager.IPasswordBuilder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
-
 import DatabaseManager.IDatabaseUserValidation;
 
 public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder {

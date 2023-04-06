@@ -1,7 +1,9 @@
 package Databases.LoginHandler.Test;
 
 import DatabaseManager.DatabaseManager;
+import DatabaseManager.QueryManager;
 import Databases.LoginHandler.LoginCredentialsDB;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoginCredentialsDBTest {
     DatabaseManager db;
+    QueryManager qm;
 
     @BeforeEach
     void setUp() {
         db = new DatabaseManager(new LoginCredentialsDB());
+        qm = new QueryManager(db, new LoginCredentialsDB());
     }
 
     @Test
@@ -28,6 +32,6 @@ class LoginCredentialsDBTest {
 
     @Test
     void getValueFromDB(){
-        assertEquals(db.getDatabase().getValueFromDB("user_name", "Lirys"), "Lirys");
+        assertEquals(qm.getModule().getQuery("user_name", "Lirys"), "Lirys");
     }
 }

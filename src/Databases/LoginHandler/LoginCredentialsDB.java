@@ -1,10 +1,11 @@
 package Databases.LoginHandler;
 
+import DatabaseManager.IDBQueries;
 import DatabaseManager.IDatabaseConnection;
 
 import java.sql.*;
 
-public class LoginCredentialsDB implements IDatabaseConnection {
+public class LoginCredentialsDB implements IDatabaseConnection, IDBQueries {
 
     @Override
     public Connection getConnection() throws SQLException {
@@ -18,7 +19,7 @@ public class LoginCredentialsDB implements IDatabaseConnection {
     }
 
     @Override
-    public String getValueFromDB(String Column, String Value){
+    public String getQuery(String Column, String Value){
         try {
             PreparedStatement pt = getThisDatabase().prepareStatement(
                     "select "+Column+" from logins where "+Column+" = ?");
