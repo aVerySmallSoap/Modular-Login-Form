@@ -1,9 +1,10 @@
 package GUI.LoginUI;
-import Managers.DatabaseManager;
+
+import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
-import Databases.LoginHandler.LoginCredentialsDB;
 import GUI.GraphicalInterface;
+import Managers.DatabaseManager;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

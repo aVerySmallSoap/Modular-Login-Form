@@ -1,12 +1,12 @@
 package Databases.LoginHandler;
 
 import Managers.DatabaseManager;
+import Managers.Interfaces.IDatabaseUserValidation;
 import Managers.Interfaces.IPasswordBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Managers.Interfaces.IDatabaseUserValidation;
 
 public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder {
     DatabaseManager DatabaseManager;

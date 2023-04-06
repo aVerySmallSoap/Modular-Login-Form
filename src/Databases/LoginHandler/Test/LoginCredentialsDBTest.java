@@ -1,14 +1,15 @@
 package Databases.LoginHandler.Test;
 
+import Databases.LoginHandler.LoginCredentialsDB;
 import Managers.DatabaseManager;
 import Managers.QueryManager;
-import Databases.LoginHandler.LoginCredentialsDB;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LoginCredentialsDBTest {
     DatabaseManager db;

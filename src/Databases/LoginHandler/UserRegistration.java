@@ -3,6 +3,7 @@ package Databases.LoginHandler;
 import Managers.DatabaseManager;
 import Managers.Interfaces.IDatabaseUserRegistration;
 import Managers.Interfaces.IPasswordBuilder;
+import Managers.QueryManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 
 public class UserRegistration implements IDatabaseUserRegistration, IPasswordBuilder {
     private DatabaseManager Database;
+    private QueryManager queryManager;
     private int ID_counter = retrieveLatestIDNUM();
     public UserRegistration(DatabaseManager Database){
         this.Database = Database;
@@ -20,7 +22,7 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
         if(Username.equals("") && Password.equals("")) return false;
         try {
             ++ID_counter;
-            Database = new DatabaseManager(new LoginCredentialsDB());
+            queryManager= new QueryManager(Database, new LoginCredentialsDB());
             PreparedStatement pt = Database.getDatabaseConnection().prepareStatement(
                     "insert into logins (ID, user_name, pass_word) values (?,?,?)");
             pt.setInt(1, ID_counter);

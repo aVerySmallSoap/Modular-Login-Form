@@ -2,11 +2,12 @@ package Managers;
 
 import Managers.Interfaces.IDBQueries;
 
-public class QueryManager extends DatabaseManager{
+public class QueryManager{
     IDBQueries Module;
+    DatabaseManager Database;
 
     public QueryManager(DatabaseManager Database, IDBQueries Module) {
-        super(Database.getDatabase());
+        this.Database = Database;
         this.Module = Module;
     }
 

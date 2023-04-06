@@ -1,12 +1,13 @@
 package Databases.LoginHandler.Test;
 
-import Managers.DatabaseManager;
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.UserValidator;
+import Managers.DatabaseManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserValidatorTest {
     UserValidator validator;

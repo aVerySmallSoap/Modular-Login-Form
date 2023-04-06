@@ -1,8 +1,8 @@
 package Databases.LoginHandler.Test;
 
-import Managers.DatabaseManager;
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.UserRegistration;
+import Managers.DatabaseManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserRegistrationTest {
     UserRegistration registration;
