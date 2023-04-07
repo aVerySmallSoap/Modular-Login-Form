@@ -4,7 +4,7 @@ import Managers.Interfaces.IDBQueries;
 
 public class QueryManager{
     IDBQueries Module;
-    DatabaseManager Database;
+    private DatabaseManager Database;
 
     public QueryManager(DatabaseManager Database, IDBQueries Module) {
         this.Database = Database;
@@ -13,5 +13,9 @@ public class QueryManager{
 
     public IDBQueries getModule(){
         return this.Module;
+    }
+
+    public DatabaseManager getDatabaseManager(){
+        return this.Database;
     }
 }

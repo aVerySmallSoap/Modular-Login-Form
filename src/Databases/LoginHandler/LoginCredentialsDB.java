@@ -22,7 +22,7 @@ public class LoginCredentialsDB implements IDatabaseConnection, IDBQueries {
     public String getQuery(String Column, String Value){
         try {
             PreparedStatement pt = getThisDatabase().prepareStatement(
-                    "select "+Column+" from logins where "+Column+" = ?");
+                    "select "+Column+" from logins where "+Column+"=?");
             pt.setString(1, Value);
             ResultSet rs = pt.executeQuery();
             if (rs.next()) {
