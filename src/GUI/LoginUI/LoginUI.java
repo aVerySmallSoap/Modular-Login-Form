@@ -1,6 +1,7 @@
 package GUI.LoginUI;
 
 import Databases.LoginHandler.LoginCredentialsDB;
+import Databases.LoginHandler.QueryToLoginCredDB;
 import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
 import GUI.GraphicalInterface;
@@ -15,7 +16,7 @@ public class LoginUI implements GraphicalInterface {
 
     DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
     UserValidator userValidator = new UserValidator(Database);
-    UserRegistration userRegistration = new UserRegistration(new QueryManager(Database, new LoginCredentialsDB()));
+    UserRegistration userRegistration = new UserRegistration(new QueryManager(Database, new QueryToLoginCredDB()));
 
     final Dimension DIMENSIONS = new Dimension(500,500);
     JFrame frame = new JFrame();

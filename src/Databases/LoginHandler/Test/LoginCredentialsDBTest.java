@@ -1,6 +1,7 @@
 package Databases.LoginHandler.Test;
 
 import Databases.LoginHandler.LoginCredentialsDB;
+import Databases.LoginHandler.QueryToLoginCredDB;
 import Managers.DatabaseManager;
 import Managers.QueryManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ class LoginCredentialsDBTest {
     @BeforeEach
     void setUp() {
         db = new DatabaseManager(new LoginCredentialsDB());
-        qm = new QueryManager(db, new LoginCredentialsDB());
+        qm = new QueryManager(db, new QueryToLoginCredDB());
     }
 
     @Test

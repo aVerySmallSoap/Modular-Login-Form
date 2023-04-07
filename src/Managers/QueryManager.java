@@ -2,6 +2,8 @@ package Managers;
 
 import Managers.Interfaces.IDBQueries;
 
+import java.sql.Connection;
+
 public class QueryManager{
     IDBQueries Module;
     private DatabaseManager Database;
@@ -15,7 +17,7 @@ public class QueryManager{
         return this.Module;
     }
 
-    public DatabaseManager getDatabaseManager(){
-        return this.Database;
+    public Connection getDatabaseManagerConnection(){
+        return this.Database.getDatabaseConnection();
     }
 }

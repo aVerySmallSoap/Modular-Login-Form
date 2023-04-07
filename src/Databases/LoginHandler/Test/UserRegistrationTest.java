@@ -1,6 +1,7 @@
 package Databases.LoginHandler.Test;
 
 import Databases.LoginHandler.LoginCredentialsDB;
+import Databases.LoginHandler.QueryToLoginCredDB;
 import Databases.LoginHandler.UserRegistration;
 import Managers.DatabaseManager;
 import Managers.QueryManager;
@@ -20,7 +21,7 @@ class UserRegistrationTest {
     @BeforeEach
     void setUp(){
         DatabaseManager databaseManager = new DatabaseManager(new LoginCredentialsDB());
-        registration = new UserRegistration(new QueryManager(databaseManager, new LoginCredentialsDB()));
+        registration = new UserRegistration(new QueryManager(databaseManager, new QueryToLoginCredDB()));
     }
 
     @Test
