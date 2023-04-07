@@ -6,7 +6,7 @@ import java.sql.Connection;
 
 public class QueryManager{
     IDBQueries Module;
-    private DatabaseManager Database;
+    DatabaseManager Database;
 
     public QueryManager(DatabaseManager Database, IDBQueries Module) {
         this.Database = Database;

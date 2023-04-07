@@ -15,7 +15,7 @@ import java.awt.*;
 public class LoginUI implements GraphicalInterface {
 
     DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
-    UserValidator userValidator = new UserValidator(Database);
+    UserValidator userValidator = new UserValidator(new QueryManager(Database, new QueryToLoginCredDB()));
     UserRegistration userRegistration = new UserRegistration(new QueryManager(Database, new QueryToLoginCredDB()));
 
     final Dimension DIMENSIONS = new Dimension(500,500);

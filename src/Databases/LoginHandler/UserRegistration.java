@@ -10,10 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRegistration implements IDatabaseUserRegistration, IPasswordBuilder {
-    private QueryManager queryManager;
+    QueryManager queryManager;
     private int ID_counter = retrieveLatestIDNUM();
-    public UserRegistration(QueryManager Query){
-        this.queryManager = Query;
+    public UserRegistration(QueryManager QueryManager){
+        this.queryManager = QueryManager;
     }
 
     @Override
@@ -22,7 +22,6 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
             return false;
         try {
             ++ID_counter;
-            queryManager = new QueryManager(new DatabaseManager(new LoginCredentialsDB()), new QueryToLoginCredDB());
             PreparedStatement pt = queryManager.getDatabaseManagerConnection().prepareStatement(
                     "insert into logins (ID, user_name, pass_word) values (?,?,?)");
             pt.setInt(1, ID_counter);
@@ -36,9 +35,9 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
     }
 
     private int retrieveLatestIDNUM(){
+        DatabaseManager databaseManager = new DatabaseManager(new LoginCredentialsDB());
         try {
-            queryManager = new QueryManager(new DatabaseManager(new LoginCredentialsDB()), new QueryToLoginCredDB());
-            PreparedStatement pt = queryManager.getDatabaseManagerConnection().prepareStatement(
+            PreparedStatement pt = databaseManager.getDatabaseConnection().prepareStatement(
                     "select count(distinct ID) from logins");
             ResultSet rs = pt.executeQuery();
             if (rs.next()){

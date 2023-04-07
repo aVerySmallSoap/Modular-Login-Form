@@ -20,8 +20,7 @@ class UserRegistrationTest {
 
     @BeforeEach
     void setUp(){
-        DatabaseManager databaseManager = new DatabaseManager(new LoginCredentialsDB());
-        registration = new UserRegistration(new QueryManager(databaseManager, new QueryToLoginCredDB()));
+        registration = new UserRegistration(new QueryManager(new DatabaseManager(new LoginCredentialsDB()), new QueryToLoginCredDB()));
     }
 
     @Test

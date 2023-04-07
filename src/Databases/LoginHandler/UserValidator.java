@@ -1,17 +1,17 @@
 package Databases.LoginHandler;
 
-import Managers.DatabaseManager;
 import Managers.Interfaces.IDatabaseUserValidation;
 import Managers.Interfaces.IPasswordBuilder;
+import Managers.QueryManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder {
-    DatabaseManager DatabaseManager;
-    public UserValidator(DatabaseManager DatabaseManager){
-        this.DatabaseManager = DatabaseManager;
+    QueryManager queryManager;
+    public UserValidator(QueryManager QueryManager){
+        this.queryManager = QueryManager;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder 
     private boolean hasTheSameID(String Username, String Password) {
         if(Username.equals("") && Password.equals("")) return false;
         try {
-            PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
+            PreparedStatement pt = queryManager.getDatabaseManagerConnection().prepareStatement(
                     "select ID from logins where user_name=? and pass_word=?");
             pt.setString(1, Username);
             pt.setString(2, Password);
@@ -36,7 +36,7 @@ public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder 
     public boolean userExists(String Username){
         if(Username.equals("")) return false;
         try{
-            PreparedStatement pt = DatabaseManager.getDatabaseConnection().prepareStatement(
+            PreparedStatement pt = queryManager.getDatabaseManagerConnection().prepareStatement(
                     "select * from logins where user_name=?");
             pt.setString(1, Username);
            ResultSet rs = pt.executeQuery();
