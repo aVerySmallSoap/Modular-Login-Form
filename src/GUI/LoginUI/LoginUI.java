@@ -66,7 +66,6 @@ public class LoginUI implements GraphicalInterface {
         frame.add(Box.createVerticalStrut(200));
         Buttons.add(Register);
     }
-
     //TODO: Do not tie functionality with the UI
     public void implementEvents(){
         Login.addActionListener(e -> {

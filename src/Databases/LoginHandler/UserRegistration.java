@@ -1,17 +1,15 @@
 package Databases.LoginHandler;
 
-import Managers.DatabaseManager;
 import Managers.Interfaces.IDatabaseUserRegistration;
 import Managers.Interfaces.IPasswordBuilder;
 import Managers.QueryManager;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRegistration implements IDatabaseUserRegistration, IPasswordBuilder {
     QueryManager queryManager;
-    private int ID_counter = retrieveLatestIDNUM();
+    private int ID_counter = new LoginCredentialsDB().getIDCount();
     public UserRegistration(QueryManager QueryManager){
         this.queryManager = QueryManager;
     }
@@ -31,22 +29,6 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
             return true;
         }catch (SQLException e){
             return false;
-        }
-    }
-
-    private int retrieveLatestIDNUM(){
-        DatabaseManager databaseManager = new DatabaseManager(new LoginCredentialsDB());
-        try {
-            PreparedStatement pt = databaseManager.getDatabaseConnection().prepareStatement(
-                    "select count(distinct ID) from logins");
-            ResultSet rs = pt.executeQuery();
-            if (rs.next()){
-                return rs.getInt(1);
-            }else {
-                return 1;
-            }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
         }
     }
 }

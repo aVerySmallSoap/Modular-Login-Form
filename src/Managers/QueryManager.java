@@ -17,6 +17,10 @@ public class QueryManager{
         return this.Module;
     }
 
+    public DatabaseManager getDatabaseManager(){
+        return this.Database;
+    }
+
     public Connection getDatabaseManagerConnection(){
         return this.Database.getDatabaseConnection();
     }
