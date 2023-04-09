@@ -33,7 +33,6 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
             }
         }catch (NullInputException e){
             JOptionPane.showMessageDialog(null, "Invalid input!");
-            System.out.println(e.getMessage());
             return false;
         }catch (SQLException e){
             System.out.println("Something happened!\n" + e);
