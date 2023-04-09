@@ -4,10 +4,8 @@ import Databases.LoginHandler.Exceptions.NullInputException;
 import Managers.Interfaces.IDatabaseUserRegistration;
 import Managers.QueryManager;
 
-import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
 public class UserRegistration implements IDatabaseUserRegistration {
     QueryManager queryManager;
