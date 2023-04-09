@@ -74,7 +74,8 @@ public class LoginUI implements GraphicalInterface {
             String pass = userValidator.append(passwordField.getPassword());
             validateUser(user,pass);
         });
-        Register.addActionListener(new registerOnClick(usernameField.getText(),userValidator.append( passwordField.getPassword())));
+
+        Register.addActionListener(new registerOnClick(usernameField.getText() ,userValidator.append(passwordField.getPassword()))); //Returns ""
     }
 
     private void validateUser(String user, String pass){
