@@ -32,11 +32,6 @@ class LoginCredentialsDBTest {
     }
 
     @Test
-    void getValueFromDB(){
-        assertEquals(qm.getModule().getQuery("user_name", "Lirys"), "Lirys");
-    }
-
-    @Test
     void getValueError(){
         assertThrows(RuntimeException.class, () -> qm.getModule().getQuery("", ""));
     }

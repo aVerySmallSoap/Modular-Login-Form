@@ -29,12 +29,14 @@ public class registerOnClick implements ActionListener {
     }
 
 
-    private void validateUserForRegistry(String user, String pass){
+    private boolean validateUserForRegistry(String user, String pass){
         if(userValidator.userExists(user)){
             JOptionPane.showMessageDialog(null, "User already exists!", "Invalid", JOptionPane.ERROR_MESSAGE);
+            return false;
         }else{
             userRegistration.RegisterUser(user, pass);
             JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+            return true;
         }
     }
 }
