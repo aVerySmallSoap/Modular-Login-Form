@@ -12,8 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserRegistrationTest {
     UserRegistration registration;
@@ -32,6 +31,11 @@ class UserRegistrationTest {
     @Test
     void registerUser() {
         assertTrue(registration.RegisterUser("test", "Dummy"));
+    }
+
+    @Test
+    void registerNullUser(){
+        assertFalse(registration.RegisterUser("", ""));
     }
 
     @AfterAll

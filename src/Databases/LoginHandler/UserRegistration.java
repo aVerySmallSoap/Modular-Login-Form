@@ -1,9 +1,11 @@
 package Databases.LoginHandler;
 
+import Databases.LoginHandler.Exceptions.NullInputException;
 import Managers.Interfaces.IDatabaseUserRegistration;
 import Managers.Interfaces.IPasswordBuilder;
 import Managers.QueryManager;
 
+import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -16,9 +18,10 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
 
     @Override
     public boolean RegisterUser(String Username, String Password) {
-        if(Username.equals("") || Password.equals(""))
-            return false;
         try {
+            if(Username.equals("") || Password.equals("")){
+                throw new NullInputException();
+            }else{
             ++ID_counter;
             PreparedStatement pt = queryManager.getDatabaseManagerConnection().prepareStatement(
                     "insert into logins (ID, user_name, pass_word) values (?,?,?)");
@@ -27,7 +30,13 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
             pt.setString(3, Password);
             pt.executeUpdate();
             return true;
+            }
+        }catch (NullInputException e){
+            JOptionPane.showMessageDialog(null, "Invalid input!");
+            System.out.println(e.getMessage());
+            return false;
         }catch (SQLException e){
+            System.out.println("Something happened!\n" + e);
             return false;
         }
     }
