@@ -5,6 +5,7 @@ import Databases.LoginHandler.QueryToLoginCredDB;
 import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
 import Databases.UIFunctions.registerOnClick;
+import Databases.UIFunctions.validateOnClick;
 import GUI.GraphicalInterface;
 import Managers.DatabaseManager;
 import Managers.QueryManager;
@@ -17,8 +18,6 @@ public class LoginUI implements GraphicalInterface {
 
     DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
     UserValidator userValidator = new UserValidator(new QueryManager(Database, new QueryToLoginCredDB()));
-    UserRegistration userRegistration = new UserRegistration(new QueryManager(Database, new QueryToLoginCredDB()));
-
     final Dimension DIMENSIONS = new Dimension(500,500);
     JFrame frame = new JFrame();
     JPanel fieldsPanel = new JPanel();
@@ -67,22 +66,19 @@ public class LoginUI implements GraphicalInterface {
         frame.add(Box.createVerticalStrut(200));
         Buttons.add(Register);
     }
-    //TODO: Do not tie functionality with the UI
+
     public void implementEvents(){
+
         Login.addActionListener(e -> {
             String user = usernameField.getText();
             String pass = userValidator.append(passwordField.getPassword());
-            validateUser(user,pass);
+            new validateOnClick(user, pass).actionPerformed(e);
         });
-
-        Register.addActionListener(new registerOnClick(usernameField.getText() ,userValidator.append(passwordField.getPassword()))); //Returns ""
+        Register.addActionListener(e -> {
+            String user = usernameField.getText();
+            String pass = userValidator.append(passwordField.getPassword());
+            new registerOnClick(user, pass).actionPerformed(e);
+        });
     }
 
-    private void validateUser(String user, String pass){
-        if(userValidator.isValidUser(user, pass)){
-            JOptionPane.showMessageDialog(null, "Log-in Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null, "User does not exist!", "Invalid", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 }
