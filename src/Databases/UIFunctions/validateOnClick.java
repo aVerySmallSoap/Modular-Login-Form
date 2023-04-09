@@ -26,11 +26,13 @@ public class validateOnClick implements ActionListener {
         validateUser(Username, Password);
     }
 
-    private void validateUser(String user, String pass){
+    private boolean validateUser(String user, String pass){
         if(userValidator.isValidUser(user, pass)){
             JOptionPane.showMessageDialog(null, "Log-in Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+            return true;
         }else{
             JOptionPane.showMessageDialog(null, "User does not exist!", "Invalid", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 }

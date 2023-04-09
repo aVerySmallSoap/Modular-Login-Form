@@ -2,14 +2,14 @@ package Databases.LoginHandler;
 
 import Databases.LoginHandler.Exceptions.NullInputException;
 import Managers.Interfaces.IDatabaseUserRegistration;
-import Managers.Interfaces.IPasswordBuilder;
 import Managers.QueryManager;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 
-public class UserRegistration implements IDatabaseUserRegistration, IPasswordBuilder {
+public class UserRegistration implements IDatabaseUserRegistration {
     QueryManager queryManager;
     private int ID_counter = new LoginCredentialsDB().getIDCount();
     public UserRegistration(QueryManager QueryManager){
@@ -32,7 +32,7 @@ public class UserRegistration implements IDatabaseUserRegistration, IPasswordBui
             return true;
             }
         }catch (NullInputException e){
-            JOptionPane.showMessageDialog(null, "Invalid input!");
+            System.out.println("Null input exception: invalid input as it is null.");
             return false;
         }catch (SQLException e){
             System.out.println("Something happened!\n" + e);

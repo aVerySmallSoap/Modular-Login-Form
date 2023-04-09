@@ -36,7 +36,7 @@ public class UserValidator implements IDatabaseUserValidation, IPasswordBuilder 
     public boolean userExists(String Username){
         try{
             if(Username.equals(""))
-                return true;
+                return false;
             PreparedStatement pt = queryManager.getDatabaseManagerConnection().prepareStatement(
                     "select * from logins where user_name=?");
             pt.setString(1, Username);
