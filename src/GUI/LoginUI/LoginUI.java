@@ -4,6 +4,7 @@ import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.QueryToLoginCredDB;
 import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
+import Databases.UIFunctions.registerOnClick;
 import GUI.GraphicalInterface;
 import Managers.DatabaseManager;
 import Managers.QueryManager;
@@ -73,20 +74,7 @@ public class LoginUI implements GraphicalInterface {
             String pass = userValidator.append(passwordField.getPassword());
             validateUser(user,pass);
         });
-        Register.addActionListener(e -> {
-            String user = usernameField.getText();
-            String pass = userValidator.append(passwordField.getPassword());
-            validateUserForRegistry(user,pass);
-        });
-    }
-
-    private void validateUserForRegistry(String user, String pass){
-        if(userValidator.userExists(user)){
-            JOptionPane.showMessageDialog(null, "User already exists!", "Invalid", JOptionPane.ERROR_MESSAGE);
-        }else{
-            userRegistration.RegisterUser(user, pass);
-            JOptionPane.showMessageDialog(null, "Registration Successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
-        }
+        Register.addActionListener(new registerOnClick(usernameField.getText(),userValidator.append( passwordField.getPassword())));
     }
 
     private void validateUser(String user, String pass){
