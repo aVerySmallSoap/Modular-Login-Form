@@ -2,12 +2,13 @@ package Databases.LoginHandler;
 
 import Databases.LoginHandler.Exceptions.NullInputException;
 import Managers.Interfaces.IDatabaseUserRegistration;
+import Managers.Interfaces.IPasswordBuilder;
 import Managers.QueryManager;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UserRegistration implements IDatabaseUserRegistration {
+public class UserRegistration implements IDatabaseUserRegistration, IPasswordBuilder {
     QueryManager queryManager;
     private int ID_counter = new LoginCredentialsDB().getIDCount();
     public UserRegistration(QueryManager QueryManager){
