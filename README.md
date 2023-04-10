@@ -1,8 +1,4 @@
 # Modular Login Form
-A simple log-in form made with java
+A simple modular login-form that is extendible
 
-<p style="font-family: 'Courier New', sans-serif">
-    Hello world!
-</p>
-
-Compile with JDK 20
+Includes already made classes for examples!
