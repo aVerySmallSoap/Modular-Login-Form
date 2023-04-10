@@ -2,7 +2,6 @@ package GUI.LoginUI;
 
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.QueryToLoginCredDB;
-import Databases.LoginHandler.UserRegistration;
 import Databases.LoginHandler.UserValidator;
 import Databases.UIFunctions.registerOnClick;
 import Databases.UIFunctions.validateOnClick;

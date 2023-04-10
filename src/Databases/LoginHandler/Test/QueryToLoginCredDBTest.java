@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueryToLoginCredDBTest {
@@ -20,23 +22,41 @@ class QueryToLoginCredDBTest {
 
     @Test
     void getQuery(){
-        assertEquals(qm.getModule().getQuery("user_name", "Lirys"), "Lirys");
+        try{
+            assertEquals(qm.getModule().getQuery("user_name", "Lirys"), "Lirys");
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Test
     void selectQuery() {
-        assertNotNull(qm.getModule().selectQuery("select * from logins"));
+        try{
+            assertNotNull(qm.getModule().selectQuery("select * from logins"));
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Test
     void query() {
-        assertEquals(qm.getModule().Query("insert into logins (ID, user_name, pass_word) values (99, 'eek', 'kee')"), 1);
+        try{
+            assertEquals(qm.getModule().Query("insert into logins (ID, user_name, pass_word) values (99, 'eek', 'kee')"), 1);
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
 
     @AfterAll
     static void afterAll() {
-        QueryManager queryManager = new QueryManager(new DatabaseManager(new LoginCredentialsDB()), new QueryToLoginCredDB());
-        queryManager.getModule().Query("delete from logins where ID=99");
+        try{
+            QueryManager queryManager = new QueryManager(new DatabaseManager(new LoginCredentialsDB()), new QueryToLoginCredDB());
+            queryManager.getModule().Query("delete from logins where ID=99");
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }

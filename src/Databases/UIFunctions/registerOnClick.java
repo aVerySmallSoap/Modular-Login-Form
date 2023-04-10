@@ -28,7 +28,6 @@ public class registerOnClick implements ActionListener {
         validateUserForRegistry(Username, Password);
     }
 
-
     private boolean validateUserForRegistry(String user, String pass){
         if(userValidator.userExists(user)){
             JOptionPane.showMessageDialog(null, "User already exists!", "Invalid", JOptionPane.ERROR_MESSAGE);
