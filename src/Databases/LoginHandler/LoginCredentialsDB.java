@@ -8,23 +8,31 @@ public class LoginCredentialsDB implements IDatabaseConnection{
     private int IDCount = getLastestIDCount();
 
     @Override
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection(){
         return getThisDatabase();
     }
 
     @Override
-    public boolean closeConnection() throws SQLException {
-        getThisDatabase().close();
-        return true;
+    public boolean closeConnection(){
+        try{
+            getThisDatabase().close();
+            return true;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public int getIDCount(){
         return IDCount;
     }
 
-    private Connection getThisDatabase() throws SQLException{
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/login_credits", "root", "root");
+    private Connection getThisDatabase(){
+        try{
+            return DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/login_credits", "root", "root");
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     private int getLastestIDCount(){
