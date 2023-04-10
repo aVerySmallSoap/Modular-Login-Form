@@ -4,6 +4,7 @@ import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.QueryToLoginCredDB;
 import Databases.LoginHandler.UserRegistration;
 import Managers.DatabaseManager;
+import Managers.Interfaces.IPasswordBuilder;
 import Managers.QueryManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ class UserRegistrationTest {
     @Test
     void passwordBuilder() {
         char[] c = {'c','h','a','r'};
-        assertEquals(registration.append(c), "char");
+        assertEquals(IPasswordBuilder.append(c), "char");
     }
 
     @Test

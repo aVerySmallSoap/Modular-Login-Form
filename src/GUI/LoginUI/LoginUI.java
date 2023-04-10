@@ -1,22 +1,15 @@
 package GUI.LoginUI;
 
-import Databases.LoginHandler.LoginCredentialsDB;
-import Databases.LoginHandler.QueryToLoginCredDB;
-import Databases.LoginHandler.UserValidator;
-import Databases.UIFunctions.registerOnClick;
-import Databases.UIFunctions.validateOnClick;
+import Databases.UIFunctions.RegisterUserOnClick;
+import Databases.UIFunctions.ValidateUserOnClick;
 import GUI.GraphicalInterface;
-import Managers.DatabaseManager;
-import Managers.QueryManager;
+import Managers.Interfaces.IPasswordBuilder;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class LoginUI implements GraphicalInterface {
-
-    DatabaseManager Database = new DatabaseManager(new LoginCredentialsDB());
-    UserValidator userValidator = new UserValidator(new QueryManager(Database, new QueryToLoginCredDB()));
     final Dimension DIMENSIONS = new Dimension(500,500);
     JFrame frame = new JFrame();
     JPanel fieldsPanel = new JPanel();
@@ -70,13 +63,13 @@ public class LoginUI implements GraphicalInterface {
 
         Login.addActionListener(e -> {
             String user = usernameField.getText();
-            String pass = userValidator.append(passwordField.getPassword());
-            new validateOnClick(user, pass).actionPerformed(e);
+            String pass = IPasswordBuilder.append(passwordField.getPassword());
+            new ValidateUserOnClick(user, pass).actionPerformed(e);
         });
         Register.addActionListener(e -> {
             String user = usernameField.getText();
-            String pass = userValidator.append(passwordField.getPassword());
-            new registerOnClick(user, pass).actionPerformed(e);
+            String pass = IPasswordBuilder.append(passwordField.getPassword());
+            new RegisterUserOnClick(user, pass).actionPerformed(e);
         });
     }
 
