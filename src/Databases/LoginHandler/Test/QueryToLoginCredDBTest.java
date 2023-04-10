@@ -49,6 +49,11 @@ class QueryToLoginCredDBTest {
         }
     }
 
+    @Test
+    void queryToNull() {
+        assertThrows(RuntimeException.class, () -> qm.getModule().Query("insert into logins (ID, user_name, pass_word) values (0,null,null)"));
+    }
+
 
     @AfterAll
     static void afterAll() {

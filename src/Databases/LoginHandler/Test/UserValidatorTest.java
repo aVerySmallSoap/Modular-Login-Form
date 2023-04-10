@@ -25,7 +25,12 @@ class UserValidatorTest {
     }
 
     @Test
-    void userExist() {
+    void userDoesNotExist() {
         assertFalse(validator.userExists(""));
+    }
+
+    @Test
+    void userDoesExit() {
+        assertTrue(validator.userExists("Lirys"));
     }
 }
