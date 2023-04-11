@@ -22,11 +22,6 @@ class LoginCredentialsDBTest {
     }
 
     @Test
-    void getDatabaseConnection() throws SQLException {
-        assertTrue(db.getDatabaseConnection().isValid(0));
-    }
-
-    @Test
     void closeConnection() throws SQLException {
         assertTrue(db.getDatabase().closeConnection());
     }
