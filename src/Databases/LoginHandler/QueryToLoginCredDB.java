@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class QueryToLoginCredDB implements IDBQueries {
-    private QueryManager queryManager = new QueryManager(new DatabaseManager(new LoginCredentialsDB()), this);
+    private final QueryManager queryManager = new QueryManager(new DatabaseManager(new LoginCredentialsDB()), this);
 
     @Override
     public String getQuery(String Column, String Value){
