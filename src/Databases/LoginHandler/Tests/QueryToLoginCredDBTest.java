@@ -1,4 +1,4 @@
-package Databases.LoginHandler.Test;
+package Databases.LoginHandler.Tests;
 
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.QueryToLoginCredDB;

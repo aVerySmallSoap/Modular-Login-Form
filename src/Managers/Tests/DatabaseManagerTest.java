@@ -1,4 +1,4 @@
-package Managers.Test;
+package Managers.Tests;
 
 import Databases.LoginHandler.LoginCredentialsDB;
 import Managers.DatabaseManager;
@@ -45,6 +45,7 @@ class mockDB implements IDatabaseConnection{
         return DriverManager.getConnection("localhost");
     }
 
+    @SuppressWarnings("RedundantThrows")
     @Override
     public boolean closeConnection() throws SQLException {
         return false;

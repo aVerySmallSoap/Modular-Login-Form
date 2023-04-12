@@ -1,9 +1,10 @@
-package Databases.LoginHandler.Test;
+package Databases.LoginHandler.Tests;
 
 import Databases.LoginHandler.LoginCredentialsDB;
 import Databases.LoginHandler.QueryToLoginCredDB;
 import Databases.LoginHandler.UserRegistration;
 import Managers.DatabaseManager;
+import Managers.Interfaces.IDatabaseUserRegistration;
 import Managers.Interfaces.IPasswordBuilder;
 import Managers.QueryManager;
 import org.junit.jupiter.api.AfterAll;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserRegistrationTest {
-    UserRegistration registration;
+    IDatabaseUserRegistration registration;
 
     @BeforeEach
     void setUp(){
@@ -30,12 +31,12 @@ class UserRegistrationTest {
     }
 
     @Test
-    void registerUser() {
+    void registerUser() throws SQLException {
         assertTrue(registration.RegisterUser("test", "Dummy"));
     }
 
     @Test
-    void registerNullUser(){
+    void registerNullUser() throws SQLException{
         assertFalse(registration.RegisterUser("", ""));
     }
 
