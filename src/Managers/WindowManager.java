@@ -3,6 +3,7 @@ package Managers;
 import GUI.GraphicalInterface;
 
 public class WindowManager{
+    @SuppressWarnings("FieldMayBeFinal")
     private GraphicalInterface interfaceModule;
 
     public WindowManager(GraphicalInterface interfaceModule){

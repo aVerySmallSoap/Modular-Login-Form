@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Login-Module" level="project" />
     <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="module" module-name="Dashboard_UI" />
   </component>
 </module>

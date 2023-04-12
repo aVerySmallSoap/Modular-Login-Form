@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+@SuppressWarnings("CanBeFinal")
 public class LoginUI implements GraphicalInterface {
     final Dimension DIMENSIONS = new Dimension(500,500);
     JFrame frame = new JFrame();

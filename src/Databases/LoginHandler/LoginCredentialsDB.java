@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class LoginCredentialsDB implements IDatabaseConnection{
 
-    private int IDCount = getLastestIDCount();
+    private final int IDCount = getLatestIDCount();
 
     @Override
     public Connection getConnection(){
@@ -35,7 +35,7 @@ public class LoginCredentialsDB implements IDatabaseConnection{
         }
     }
 
-    private int getLastestIDCount(){
+    private int getLatestIDCount(){
         try{
             Statement st = this.getConnection().createStatement();
             ResultSet rs = st.executeQuery("select COUNT(distinct ID) from logins");
