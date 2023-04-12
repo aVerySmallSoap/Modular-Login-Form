@@ -5,8 +5,6 @@ import java.sql.*;
 
 public class LoginCredentialsDB implements IDatabaseConnection{
 
-    private final int IDCount = getLatestIDCount();
-
     @Override
     public Connection getConnection(){
         return getThisDatabase();
@@ -22,10 +20,6 @@ public class LoginCredentialsDB implements IDatabaseConnection{
         }
     }
 
-    public int getIDCount(){
-        return IDCount;
-    }
-
     private Connection getThisDatabase(){
         try{
             return DriverManager.getConnection(
@@ -34,19 +28,4 @@ public class LoginCredentialsDB implements IDatabaseConnection{
             throw new RuntimeException(e);
         }
     }
-
-    private int getLatestIDCount(){
-        try{
-            Statement st = this.getConnection().createStatement();
-            ResultSet rs = st.executeQuery("select COUNT(distinct ID) from logins");
-            if(rs.next()) {
-                return rs.getInt(1);
-            }else {
-                return 0;
-            }
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-    }
-
 }

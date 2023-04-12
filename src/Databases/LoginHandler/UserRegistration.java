@@ -5,13 +5,16 @@ import Managers.Interfaces.IDatabaseUserRegistration;
 import Managers.QueryManager;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserRegistration implements IDatabaseUserRegistration {
     QueryManager queryManager;
-    private int ID_counter = new LoginCredentialsDB().getIDCount();
+    private int ID_counter;
     public UserRegistration(QueryManager QueryManager){
         this.queryManager = QueryManager;
+        this.ID_counter = this.getLatestIDCount();
     }
 
     @Override
@@ -35,6 +38,21 @@ public class UserRegistration implements IDatabaseUserRegistration {
         }catch (SQLException e){
             System.out.println("Something happened!\n" + e);
             return false;
+        }
+    }
+
+    private int getLatestIDCount(){
+        try{
+            Statement st = queryManager.getDatabaseManagerConnection().createStatement();
+            String getID = "select COUNT(distinct ID) from logins";
+            ResultSet rs = st.executeQuery(getID);
+            if(rs.next()) {
+                return rs.getInt(1);
+            }else {
+                return 0;
+            }
+        } catch (SQLException e){
+            throw new RuntimeException(e);
         }
     }
 }
