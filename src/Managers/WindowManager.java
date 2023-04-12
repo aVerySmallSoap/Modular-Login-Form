@@ -1,4 +1,6 @@
-package GUI;
+package Managers;
+
+import GUI.GraphicalInterface;
 
 public class WindowManager{
     private GraphicalInterface interfaceModule;

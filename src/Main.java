@@ -1,5 +1,5 @@
 import GUI.LoginUI.LoginUI;
-import GUI.WindowManager;
+import Managers.WindowManager;
 
 public class Main {
     static WindowManager GUI = new WindowManager(new LoginUI());
